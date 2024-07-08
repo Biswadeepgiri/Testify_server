@@ -4,6 +4,7 @@ import { UpdateReviewDto } from './dto/update-review.dto';
 import { Review } from './entities/review.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import moment from 'moment';
 
 @Injectable()
 export class ReviewsService {
@@ -13,6 +14,18 @@ export class ReviewsService {
   ) {}
 
   create(username:string,email:string,description:string,developer_username:string): Promise<Review> {
+
+    let currentDate = new Date().toLocaleDateString();
+
+
+    
+    function getRandomInt(min:number, max:number) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+    // let randomInt = getRandomInt(20, 60);
+
     const review: Review = new Review();
     // user.name = createUserDto.name;
     // user.age = createUserDto.age;
@@ -20,6 +33,8 @@ export class ReviewsService {
     review.reviewer_username = username;
     review.review_description = description;
     review.developer_username = developer_username;
+    review.rating = getRandomInt(1,5);
+    review.date = currentDate;
     // user.gender = createUserDto.gender;
     return this.ReviewRepository.save(review);
   }

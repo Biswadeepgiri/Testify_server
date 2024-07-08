@@ -1,6 +1,7 @@
 import {
     IsAlphanumeric,
     IsEmail,
+    IsEmpty,
     IsEnum,
     IsInt,
     IsNotEmpty,
@@ -8,6 +9,7 @@ import {
     Matches,
     MinLength,
   } from 'class-validator';
+import { IntegerType } from 'typeorm';
   
 
   export class CreateReviewDto {
@@ -15,6 +17,15 @@ import {
     // @MinLength(2, { message: 'Name must have atleast 2 characters.' })
     // @IsNotEmpty()
     // name: string;
+
+    // @IsNotEmpty()
+    @IsInt()
+    rating: number;
+
+    @IsNotEmpty()
+    @IsString()
+    date:string;
+
     @IsNotEmpty()
     @MinLength(3, { message: 'Username must have atleast 3 characters.' })
     // @IsAlphanumeric(null, {

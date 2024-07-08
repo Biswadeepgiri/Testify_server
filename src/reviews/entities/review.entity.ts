@@ -1,3 +1,4 @@
+import { IsNotEmpty } from 'class-validator';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -9,6 +10,12 @@ export class Review {
   id: number;
 
   
+  @Column()
+  rating: number;
+
+  // we can use the default to add a default value in the column and then change it later in the services function
+  @Column({type:'varchar' , default:'thisdate' })
+  date:string;
 
   @Column({ type: 'varchar', length: 15 })
   developer_username: string;
