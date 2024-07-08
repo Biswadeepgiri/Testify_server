@@ -29,7 +29,7 @@ export class ReviewsService {
   }
 
   findReviewByDeveloperUsername(developer_username: string) {
-    return this.ReviewRepository.findOneBy({developer_username});
+    return this.ReviewRepository.findBy({developer_username});
   }
 
   update(id: number, updateReviewDto: UpdateReviewDto):Promise<Review> {
