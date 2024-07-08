@@ -10,8 +10,8 @@ export class AuthService {
         private jwtService : JwtService
     ) {}
 
-    async signIn(username: string,email: string,pass:string): Promise<any> {
-        const user =  await this.usersService.findUserByEmail(email);
+    async signIn(username: string,pass:string): Promise<any> {
+        const user =  await this.usersService.findUserByEmail(username);
 
         if(!user) {
             throw new  UnauthorizedException("User does not exists");
